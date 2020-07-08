@@ -1,31 +1,47 @@
 class UsersController < ApplicationController
-    before_action :set_user, only:[:show, :edit, :update, :delete]
+    before_action :confirm_user, only: [:show, :orders, :edit, :update, :delete]
 
     def new
+        @user = User.new
     end
 
     def create
-    end
-
-    def orders
+        @user = User.create(user_params)
+        session[:user_id] = @user.id
+        redirect_to user_path(@user)
     end
 
     def show
+    end
+
+    def orders
     end
 
     def edit
     end
 
     def update
+        @user.update(user_params)
+        redirect_to user_path(@user)
     end
 
     def delete
+        @user.delete
+        redirect_to login_path
     end
 
     private
 
     def user_params
-        params.require(:user).permit(:username, :password_digest, :email)
+        params.require(:user).permit(:username, :password, :email)
+    end
+
+    def confirm_user
+        if !session[:user_id]
+            redirect_to login_path
+        else
+            @user = User.find_by(params[:sessions][:id])
+        end
     end
 
 end

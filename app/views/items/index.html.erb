@@ -1,0 +1,25 @@
+<h1>All Items</h1>
+<h2>Toys</h2>
+<ul>
+    <%@items.select{|i| i.category == "Toy"}.each do |i|%>
+        <li><%= link_to i.name, item_path(i) %></li>
+    <%end%>
+</ul>
+<h2>Food</h2>
+<ul>
+    <%@items.select{|i| i.category == "Food"}.each do |i|%>
+        <li><%= link_to i.name, item_path(i) %></li>
+    <%end%>
+</ul>
+<h2>Care</h2>
+<ul>
+    <%@items.select{|i| i.category == "Care"}.each do |i|%>
+        <li><%= link_to i.name, item_path(i) %></li>
+    <%end%>
+</ul>
+<h2>Accessories</h2>
+<ul>
+    <%@items.select{|i| i.category == "Accessories"}.each do |i|%>
+        <li><%= link_to i.name, item_path(i) %></li>
+    <%end%>
+</ul>
