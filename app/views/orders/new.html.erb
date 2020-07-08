@@ -1,0 +1,50 @@
+<h1>New Order</h1>
+<%= form_for @order do |f| %>
+<%= f.hidden_field :total, value: 250%>
+<h2>Enter Shipping Info:</h2>
+    <%= f.fields_for :shipping_info do |ship| %>
+        <li><%= ship.label :address_one%></li>
+        <li><%= ship.text_field :address_one%></li>
+        <li><%= ship.label :address_two%></li>
+        <li><%= ship.text_field :address_two%></li>
+        <li><%= ship.label :city%></li>
+        <li><%= ship.text_field :city%></li>
+        <li><%= ship.label :state%></li>
+        <li><%= ship.text_field :state%></li>
+        <li><%= ship.label :country%></li>
+        <li><%= ship.text_field :country%></li>
+        <li><%= ship.label :zip_code%></li>
+        <li><%= ship.text_field :zip_code%></li>
+    <%end%>
+<h2>Enter Billing Info:</h2>    
+    <%= f.fields_for :billing_info do |bill| %>
+        <li><%= bill.label :address_one%></li>
+        <li><%= bill.text_field :address_one%></li>
+        <li><%= bill.label :address_two%></li>
+        <li><%= bill.text_field :address_two%></li>
+        <li><%= bill.label :city%></li>
+        <li><%= bill.text_field :city%></li>
+        <li><%= bill.label :state%></li>
+        <li><%= bill.text_field :state%></li>
+        <li><%= bill.label :country%></li>
+        <li><%= bill.text_field :country%></li>
+        <li><%= bill.label :zip_code%></li>
+        <li><%= bill.text_field :zip_code%></li>
+    <%end%> 
+<h2>Enter Payment Info:</h2>     
+    <%= f.fields_for :payment_info do |pay| %>
+        <li><%= pay.label :name_on_card%></li>
+        <li><%= pay.text_field :name_on_card%></li>
+        <li><%= pay.label :card_number%></li>
+        <li><%= pay.number_field :card_number%></li>
+        <li><%= pay.label :expiration%></li>
+        <li><%= pay.datetime_field :expiration%></li>
+        <li><%= pay.label :cvc%></li>
+        <li><%= pay.number_field :cvc%></li>
+        <li><%= pay.label :zip_code%></li>
+        <li><%= pay.text_field :zip_code%></li>
+    <%end%>
+   <h3> <%= f.submit%> </h3>      
+<%end%>
+
+

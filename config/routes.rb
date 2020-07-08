@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'application#home'
 
   post '/items/:id', to: 'items#add_to_cart'
-  post '/users/:id', to: 'users#login'
+  post '/users/new', to: 'users#login'
 
 
   
