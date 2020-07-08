@@ -11,10 +11,10 @@ class UsersController < ApplicationController
         redirect_to user_path(@user)
     end
 
-    def show
+    def login
     end
 
-    def orders
+    def show
     end
 
     def edit
@@ -38,9 +38,9 @@ class UsersController < ApplicationController
 
     def confirm_user
         if !session[:user_id]
-            redirect_to login_path
+            redirect_to new_user_path
         else
-            @user = User.find_by(session[:user_id])
+            @user = User.find(session[:user_id])
         end
     end
 
