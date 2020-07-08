@@ -6,12 +6,8 @@ class ApplicationController < ActionController::Base
     end
 
     private
-    
-    # def set_user
-    #     @user = User.find_by(params[:sessions][:id]) unless !params[:sessions][:user_id]
-    # end
-
     def cart
         session[:cart] ||= []
     end
+    
 end
