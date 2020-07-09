@@ -1,7 +1,9 @@
 <h2>Items in Cart:</h2>
 <ul>
     <% cart.each do |i| %>
-        <li><%= Item.find(i["item"]).name %>: $<%= (Item.find(i["item"]).price * i["quantity"]) %></li>
+        <li><%=Item.find(i["item"]).name %>: $<%= (Item.find(i["item"]).price * i["quantity"])%></li>
     <% end %>
-    <li>Total: $<%= cart.sum {|i| Item.find(i["item"]).price * i["quantity"] } %></li>
+    <li> Total: $<%= cart.sum {|i| Item.find(i["item"]).price * i["quantity"]} %></li>
 </ul>
+
+<%= button_to "Clear Cart", order_items_path, :method => :delete %>

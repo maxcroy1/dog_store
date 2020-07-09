@@ -8,6 +8,11 @@ class OrderItemsController < ApplicationController
         @order_item = OrderItem.new
     end
 
+    def delete
+        @order_item = OrderItem.find(params[:id])
+        redirect_to order_items_path
+    end
+
     def create
     end
 
