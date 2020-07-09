@@ -1,6 +1,30 @@
 <h1>New Order</h1>
+<h2>Items in Cart:</h2>
+<ul>
+    <% cart.each do |i| %>
+        <li><%= Item.find(i).name %>: $<%= Item.find(i).price %></li>
+    <% end %>
+    <li>Total: <%=  %></li>
+</ul>
 <%= form_for @order do |f| %>
-<%= f.hidden_field :total, value: 250%>
+    <%= f.hidden_field :total, value: 250%>
+    <% if !session[:user_id] %>
+        <h2>Enter Email:</h2>
+        <%= f.fields_for :user do |user| %>
+            <%= user.label :email %>
+            <%= user.text_field :email %>
+            <p>Enter username and password if you would like to create a user account:</p>
+            <%= user.label :username %>
+            <%= user.text_field :username %>
+            <%= user.label :password %>
+            <%= user.text_field :password %>
+        <% end %>
+    <% else %>
+        <h2>Email Address:</h2>
+        <ul>
+            <li><%= @user.email %></li>
+        </ul>
+    <% end %>
 <h2>Enter Shipping Info:</h2>
     <%= f.fields_for :shipping_info do |ship| %>
         <li><%= ship.label :address_one%></li>
@@ -44,7 +68,7 @@
         <li><%= pay.label :zip_code%></li>
         <li><%= pay.text_field :zip_code%></li>
     <%end%>
-   <h3> <%= f.submit%> </h3>      
+   <h3><%= f.submit%></h3>      
 <%end%>
 
 
