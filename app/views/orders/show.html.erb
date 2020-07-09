@@ -1,3 +1,24 @@
 <h1> Order Confirmation: <%=@order.id%></h1>
 
 <p>Confirmation will be sent to: <strong><%=@order.user.email%></strong></p>
+
+<h2>Payment Information</h2>
+<p><%=@order.payment_info.name_on_card%></p>
+<%cc = @order.payment_info.card_number.to_s%>
+<p>xxxxxxxxxxxx<%= last_four = cc[cc.length - 4, 4]%></p>
+<p> Exp: <%=@order.payment_info.expiration%></p>
+
+
+<h2>Order Summary:</h2>
+<%@order.items.each do |item|%>
+<%=item.name%>, $<%=item.price%>
+<%end%>
+<p><strong>Order Total:</strong></p>
+<%=@order.total%>
+
+
+<h2>Shipping To: </h2>
+<p><%=@order.shipping_info.address_one%></p>
+<p><%=@order.shipping_info.address_two%></p>
+<p><%=@order.shipping_info.state%>, <%=@order.shipping_info.country%>, <%=@order.shipping_info.zip_code%></p>
+
