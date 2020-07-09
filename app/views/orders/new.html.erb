@@ -4,7 +4,7 @@
     <% cart.each do |i| %>
         <li><%= Item.find(i["item"]).name %>: $<%= (Item.find(i["item"]).price * i["quantity"]) %></li>
     <% end %>
-    <li>Total: <%=  %></li>
+    <li>Total: $<%= cart.sum {|i| Item.find(i["item"]).price * i["quantity"] } %></li>
 </ul>
 <%= form_for @order do |f| %>
     <% if !session[:user_id] %>

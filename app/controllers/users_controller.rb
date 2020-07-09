@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :cart
     before_action :confirm_user, only: [:show]
 
     def new
