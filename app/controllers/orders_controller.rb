@@ -28,7 +28,6 @@ class OrdersController < ApplicationController
         @order = Order.find(params[:id])
     end
 
-
     private
     def set_user
         @user = User.find(session[:user_id]) unless !session[:user_id]
