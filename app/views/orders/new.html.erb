@@ -2,12 +2,11 @@
 <h2>Items in Cart:</h2>
 <ul>
     <% cart.each do |i| %>
-        <li><%= Item.find(i).name %>: $<%= Item.find(i).price %></li>
+        <li><%= Item.find(i["item"]).name %>: $<%= (Item.find(i["item"]).price * i["quantity"]) %></li>
     <% end %>
     <li>Total: <%=  %></li>
 </ul>
 <%= form_for @order do |f| %>
-    <%= f.hidden_field :total, value: 250%>
     <% if !session[:user_id] %>
         <h2>Enter Email:</h2>
         <%= f.fields_for :user do |user| %>

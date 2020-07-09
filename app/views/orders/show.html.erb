@@ -10,15 +10,14 @@
 
 
 <h2>Order Summary:</h2>
-<%@order.items.each do |item|%>
-<%=item.name%>, $<%=item.price%>
+<%@order.order_items.each do |oi|%>
+    <%=oi.item.name%>, Quantity: <%= oi.quantity %>, $<%=oi.item.price * oi.quantity%>
 <%end%>
-<p><strong>Order Total:</strong></p>
-<%=@order.total%>
+<p><strong>Order Total:</strong> $<%= @order.order_items.sum {|oi| oi.item.price * oi.quantity} %></p>
+
 
 
 <h2>Shipping To: </h2>
 <p><%=@order.shipping_info.address_one%></p>
 <p><%=@order.shipping_info.address_two%></p>
 <p><%=@order.shipping_info.state%>, <%=@order.shipping_info.country%>, <%=@order.shipping_info.zip_code%></p>
-

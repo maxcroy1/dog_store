@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :confirm_user, only: [:show, :orders, :edit, :update, :delete]
+    before_action :confirm_user, only: [:show]
 
     def new
         @user = User.new
@@ -23,19 +23,6 @@ class UsersController < ApplicationController
     end
 
     def show
-    end
-
-    def edit
-    end
-
-    def update
-        @user.update(user_params)
-        redirect_to user_path(@user)
-    end
-
-    def delete
-        @user.delete
-        redirect_to login_path
     end
 
     private
