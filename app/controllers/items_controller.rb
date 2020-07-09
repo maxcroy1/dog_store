@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
 # before_action :set_user 
 before_action :set_item, only: [:show, :add_to_cart]
+before_action :cart
     def index
         @items = Item.all
     end
