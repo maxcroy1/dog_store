@@ -25,11 +25,11 @@ class OrdersController < ApplicationController
 
     private
     def set_user
-        @user = session[:user_id] unless !session[:user_id]
+        @user = User.find(session[:user_id]) unless !session[:user_id]
     end
 
     def order_params
         params.require(:order).permit(:total, user_attributes: [:username, :password, :email], shipping_info_attributes: [:address_one, :address_two, :city, :state, :country, :zip_code], billing_info_attributes: [:address_one, :address_two, :city, :state, :country, :zip_code], payment_info_attributes: [:name_on_card, :card_number, :expiration, :cvc, :zip_code] )
     end
-    
+
 end
