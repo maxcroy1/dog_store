@@ -22,6 +22,11 @@ class UsersController < ApplicationController
         end    
     end
 
+    def logout
+        session[:user_id].clear
+        redirect_to '/'
+    end
+
     def show
     end
 

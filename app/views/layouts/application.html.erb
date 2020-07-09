@@ -10,9 +10,17 @@
   </head>
 
   <body>
+    <nav>
+      <img class="nav_logo" src="#" alt="Logo">
+      <a href="/">Home</a>
+      <a href="/items">Items</a>
+      <% if session[:user_id] %>
+        <a href="/users/update">Logout</a>
+      <% else %>
+        <a href="/users/new">Login</a>
+      <% end %>
+      <a href="/orders/new">Checkout</a>
+    </nav>
     <%= yield %>
   </body>
 </html>
-
-<%# Login Button, should say logout if logged in - PARTIAL %>
-<%# Button back to home %>
