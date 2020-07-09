@@ -10,7 +10,11 @@ class OrdersController < ApplicationController
     end
 
     def create
-        @user = User.create(order_params[:user_attributes])
+        if !session[:user_id]
+            @user = User.create(order_params[:user_attributes])
+        else 
+            @user = User.find(session[:user_id])
+        end
         @shipping_info = ShippingInfo.create(order_params[:shipping_info_attributes].merge!(user_id: @user.id))
         @billing_info = BillingInfo.create(order_params[:billing_info_attributes].merge!(user_id: @user.id))
         @payment_info = PaymentInfo.create(order_params[:payment_info_attributes].merge!(user_id: @user.id, billing_info_id: @billing_info.id))
