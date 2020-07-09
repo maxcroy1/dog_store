@@ -1,4 +1,8 @@
 <h1><%= @item.name %></h1>
 <p><strong>Category:</strong> <%= @item.category %></p>
 <p><strong>Price:</strong> <%= @item.price %></p>
-<%= button_to "Add To Cart", action: "add_to_cart" %>
+<%= form_for @order_item, :url => { :controller => :items, :action => :add_to_cart } do |f| %>
+    <strong><%= f.label "Quantity: " %></strong>
+    <%= f.number_field :quantity %>
+    <%= f.submit "Add To Cart" %>
+<% end %>
