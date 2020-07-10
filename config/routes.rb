@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   post '/items/:id', to: 'items#add_to_cart'
   post '/users/new', to: 'users#login'
   post '/users/update', to: 'users#logout'
+
+  post '/order_items', to: 'order_items#clear_cart'
   
 end

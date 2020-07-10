@@ -8,6 +8,12 @@ class OrderItemsController < ApplicationController
         @order_item = OrderItem.new
     end
 
+    def clear_cart
+        byebug
+        cart.clear
+        render :index
+    end
+
     def delete
         @order_item = OrderItem.find(params[:id])
         redirect_to order_items_path
