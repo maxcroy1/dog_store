@@ -12,22 +12,6 @@ class UsersController < ApplicationController
         redirect_to user_path(@user)
     end
 
-    def login
-        @user = User.find_by(username: user_params[:username]) 
-        if @user.authenticate(user_params[:password]) 
-            session[:user_id] = @user.id
-            redirect_to user_path(@user)
-        else 
-            flash[:my_errors] = @user.errors.full_messages
-            redirect_to new_user_path
-        end    
-    end
-
-    def logout
-        session[:user_id].clear
-        redirect_to '/'
-    end
-
     def show
     end
 

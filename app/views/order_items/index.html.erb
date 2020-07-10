@@ -15,4 +15,5 @@
             </div>
         <%end%>
     <h3><u>Total:</u> $<%= cart.sum {|i| Item.find(i["item"]).price * i["quantity"]} %></h3>
+    <%= link_to "Clear Cart", "/order_items/clear", :class => "btn btn-primary"%>
 </div>

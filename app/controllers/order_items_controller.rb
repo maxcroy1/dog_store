@@ -9,7 +9,6 @@ class OrderItemsController < ApplicationController
     end
 
     def clear_cart
-        byebug
         cart.clear
         render :index
     end
