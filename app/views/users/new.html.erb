@@ -1,29 +1,41 @@
-<h1>Create Profile</h1>
-
-<div class='error'>
-  <% if flash[:my_errors] %>
-    <% flash[:my_errors].each do |error| %>
-      <p><%= error %></p>
-    <% end %>
-  <% end %>
+<div class="container mx-auto my-5">
+  <div class="container my-3">
+    <h3>Create Profile</h3>
+    <div class='error'>
+      <% if flash[:my_errors] %>
+        <% flash[:my_errors].each do |error| %>
+          <p><%= error %></p>
+        <% end %>
+      <% end %>
+    </div>
+    <%= form_for @user do |f|%>
+      <div class="form-group">
+          <%= f.label :username %>
+          <%= f.text_field :username, :class => "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.text_field :password, :class => "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, :class => "form-control" %>
+      </div>
+      <%= f.submit 'Create Account', :class => "btn btn-primary" %>
+    <%end%>
+  </div>
+  <div class="container">
+    <h3>Login</h3>
+    <%= form_for @user, url: {action: "login"} do |f| %>
+      <div class="form-group">
+        <%= f.label :username %>
+        <%= f.text_field :username, :class => "form-control"  %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.text_field :password, :class => "form-control"  %>
+      </div>
+      <%= f.submit "Login", :class => "btn btn-primary" %>
+    <%end%>
+  </div>
 </div>
-
-<%= form_for @user do |f|%>
-<%= f.label :username %>
-<%= f.text_field :username %>
-<%= f.label :password %>
-<%= f.text_field :password %>
-<%= f.label :email %>
-<%= f.text_field :email %>
-<%= f.submit %>
-<%end%>
-
-<h2>Or Login</h2>
-
-<%= form_for @user, url: {action: "login"} do |f| %>
-<%= f.label :username %>
-<%= f.text_field :username %>
-<%= f.label :password %>
-<%= f.text_field :password %>
-<%= f.submit "Login"%>
-<%end%>

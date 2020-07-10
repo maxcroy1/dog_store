@@ -1,23 +1,47 @@
-<h1> Order Confirmation: <%=@order.id%></h1>
-
-<p>Confirmation will be sent to: <strong><%=@order.user.email%></strong></p>
-
-<h2>Payment Information</h2>
-<p><%=@order.payment_info.name_on_card%></p>
 <%cc = @order.payment_info.card_number.to_s%>
-<p>xxxxxxxxxxxx<%= last_four = cc[cc.length - 4, 4]%></p>
-<p> Exp: <%=@order.payment_info.expiration%></p>
-
-
-<h2>Order Summary:</h2>
-<%@order.order_items.each do |oi|%>
-    <%=oi.item.name%>, Quantity: <%= oi.quantity %>, $<%=oi.item.price * oi.quantity%>
-<%end%>
-<p><strong>Order Total:</strong> $<%= @order.order_items.sum {|oi| oi.item.price * oi.quantity} %></p>
-
-
-
-<h2>Shipping To: </h2>
-<p><%=@order.shipping_info.address_one%></p>
-<p><%=@order.shipping_info.address_two%></p>
-<p><%=@order.shipping_info.state%>, <%=@order.shipping_info.country%>, <%=@order.shipping_info.zip_code%></p>
+<div class="container mx-auto my-3">
+    <div class="container m-4">
+        <h1> Order Confirmation: AEo784<%=@order.id%></h1>
+        <p>Confirmation will be sent to: <strong><%=@order.user.email%></strong></p>
+    </div>
+    <hr>
+    <div class="container m-4">
+        <h3><u>Payment Information</u></h3>
+        <ul>
+            <li><strong>Name on Order:</strong> <%=@order.payment_info.name_on_card%></li>
+            <li><strong>CC:</strong> XXXXXXXXXXXX<%= last_four = cc[cc.length - 4, 4]%></li>
+            <li><strong>Exp:</strong> <%=@order.payment_info.expiration%></li>
+        </ul>
+    </div>
+    <hr>
+     <div class="container m-4">
+        <h3><u>Shipping To:</u></h3>
+        <p>
+            <%=@order.shipping_info.address_one%>
+            <br>
+            <%=@order.shipping_info.address_two%>
+            <br>
+            <%=@order.shipping_info.state%>, <%=@order.shipping_info.country%>, <%=@order.shipping_info.zip_code%>
+        </p>
+    </div>
+    <hr>
+    <div class="container m-4">
+        <h3><u>Order Summary:</u></h3>
+        <%@order.order_items.each do |oi|%>
+            <div class="row">
+                <div class="col-4">
+                    <img class="item_image py-3" src="https://loremflickr.com/200/200/dogtoy" alt="A dog toy">
+                </div>
+                <div class="col-6 my-auto">
+                    <ul>
+                        <li><strong>Name:</strong> <%=oi.item.name%></li>
+                        <li><strong>Quantity:</strong> <%= oi.quantity %></li>
+                        <li><strong>Amount:</strong> $<%=oi.item.price * oi.quantity%></li>
+                    </ul>
+                </div>
+            </div>
+        <%end%>
+        <br>
+        <h4><u>Order Total:</u> $<%= @order.order_items.sum {|oi| oi.item.price * oi.quantity} %></h4>
+    </div>
+</div>

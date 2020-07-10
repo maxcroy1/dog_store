@@ -1,8 +1,16 @@
-<h1><%=@user.username %></h1>
-
-<p>Email: <%=@user.email%><p>
-
-<h2>Past Orders:</h2>
-<% @user.orders.each do |order| %>
-<li>Order ID: <%= link_to order.id, order_path(order) %></li>
-<%end%>
+<div class="container mx-auto my-3">
+    <div class="container m-4">
+        <h3><u>Account Information:</u></h3>
+        <p><strong>Username:</strong> <%=@user.username %></p>
+        <p><strong>Email:</strong> <%=@user.email%><p>
+    </div>
+    <hr>
+    <div class="container m-4">
+        <h3><u>Past Orders:</u></h3>
+        <ul>
+            <% @user.orders.each do |order| %>
+                <li>Order ID: <%= link_to "AEo784#{order.id}", order_path(order) %></li>
+            <%end%>
+        </ul>
+    </div>
+</div>

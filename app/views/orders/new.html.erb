@@ -1,73 +1,132 @@
-<h1>New Order</h1>
-<h2>Items in Cart:</h2>
-<ul>
-    <% cart.each do |i| %>
-        <li><%= Item.find(i["item"]).name %>: $<%= (Item.find(i["item"]).price * i["quantity"]) %></li>
-    <% end %>
-    <li>Total: $<%= cart.sum {|i| Item.find(i["item"]).price * i["quantity"] } %></li>
-</ul>
-<%= form_for @order do |f| %>
-    <% if !session[:user_id] %>
-        <h2>Enter Email:</h2>
-        <%= f.fields_for :user do |user| %>
-            <%= user.label :email %>
-            <%= user.text_field :email %>
-            <p>Enter username and password if you would like to create a user account:</p>
-            <%= user.label :username %>
-            <%= user.text_field :username %>
-            <%= user.label :password %>
-            <%= user.text_field :password %>
-        <% end %>
-    <% else %>
-        <h2>Email Address:</h2>
+<div class="container mx-auto my-3">
+    <div class="container m-4">
+        <h1>Checkout</h1>
+    </div>
+    <hr>
+    <div class="container m-4">
+        <h2>Items in Cart:</h2>
         <ul>
-            <li><%= @user.email %></li>
+            <% cart.each do |i| %>
+                <li><%= Item.find(i["item"]).name %>: $<%= (Item.find(i["item"]).price * i["quantity"]) %></li>
+            <% end %>
         </ul>
-    <% end %>
-<h2>Enter Shipping Info:</h2>
-    <%= f.fields_for :shipping_info do |ship| %>
-        <li><%= ship.label :address_one%></li>
-        <li><%= ship.text_field :address_one%></li>
-        <li><%= ship.label :address_two%></li>
-        <li><%= ship.text_field :address_two%></li>
-        <li><%= ship.label :city%></li>
-        <li><%= ship.text_field :city%></li>
-        <li><%= ship.label :state%></li>
-        <li><%= ship.text_field :state%></li>
-        <li><%= ship.label :country%></li>
-        <li><%= ship.text_field :country%></li>
-        <li><%= ship.label :zip_code%></li>
-        <li><%= ship.text_field :zip_code%></li>
+        <h4><strong>Total:</strong> $<%= cart.sum {|i| Item.find(i["item"]).price * i["quantity"] } %></h4>
+    </div>
+    <hr>
+    <%= form_for @order do |f| %>
+        <div class="container m-4">
+            <% if !session[:user_id] %>
+                <h2>Enter Email:</h2>
+                <%= f.fields_for :user do |user| %>
+                    <div class="form-group">
+                        <%= user.label :email %>
+                        <%= user.text_field :email, :class => "form-control"  %>
+                    </div>
+                    <p>Enter username and password if you would like to create a user account:</p>
+                    <div class="form-group">
+                        <%= user.label :username %>
+                        <%= user.text_field :username, :class => "form-control"  %>
+                    </div>
+                    <div class="form-group">
+                        <%= user.label :password %>
+                        <%= user.text_field :password, :class => "form-control"  %>
+                    </div>
+                <% end %>
+            <% else %>
+                <h2>Email Address:</h2>
+                <ul>
+                    <li><%= @user.email %></li>
+                </ul>
+            <% end %>
+        </div>
+        <hr>
+        <div class="container m-4">
+            <h2>Enter Shipping Info:</h2>
+            <%= f.fields_for :shipping_info do |ship| %>
+                <div class="form-group">
+                    <%= ship.label :address_one%>
+                    <%= ship.text_field :address_one, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= ship.label :address_two%>
+                    <%= ship.text_field :address_two, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= ship.label :city%>
+                    <%= ship.text_field :city, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= ship.label :state%></li>
+                    <%= ship.text_field :state, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= ship.label :country%>
+                    <%= ship.text_field :country, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= ship.label :zip_code%>
+                    <%= ship.text_field :zip_code, :class => "form-control" %>
+                </div>
+            <%end%>
+        </div>
+        <hr>
+        <div class="container m-4">
+            <h2>Enter Billing Info:</h2>    
+            <%= f.fields_for :billing_info do |bill| %>
+                <div class="form-group">
+                    <%= bill.label :address_one%>
+                    <%= bill.text_field :address_one, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= bill.label :address_two%>
+                    <%= bill.text_field :address_two, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= bill.label :city%>
+                    <%= bill.text_field :city, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= bill.label :state%>
+                    <%= bill.text_field :state, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= bill.label :country%>
+                    <%= bill.text_field :country, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= bill.label :zip_code%>
+                    <%= bill.text_field :zip_code, :class => "form-control" %>
+                </div>
+            <%end%> 
+        </div>
+        <hr>
+        <div class="container m-4">
+            <h2>Enter Payment Info:</h2>     
+            <%= f.fields_for :payment_info do |pay| %>
+                <div class="form-group">
+                    <%= pay.label :name_on_card%>
+                    <%= pay.text_field :name_on_card, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= pay.label :card_number%>
+                    <%= pay.number_field :card_number, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= pay.label :expiration%>
+                    <%= pay.datetime_field :expiration, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= pay.label :cvc%>
+                    <%= pay.number_field :cvc, :class => "form-control" %>
+                </div>
+                <div class="form-group">
+                    <%= pay.label :zip_code%>
+                    <%= pay.text_field :zip_code, :class => "form-control" %>
+                </div>
+            <%end%>
+        </div>
+        <div class="container m-4">
+            <%= f.submit "Checkout Now", :class => "btn btn-primary"%>    
+        </div>
     <%end%>
-<h2>Enter Billing Info:</h2>    
-    <%= f.fields_for :billing_info do |bill| %>
-        <li><%= bill.label :address_one%></li>
-        <li><%= bill.text_field :address_one%></li>
-        <li><%= bill.label :address_two%></li>
-        <li><%= bill.text_field :address_two%></li>
-        <li><%= bill.label :city%></li>
-        <li><%= bill.text_field :city%></li>
-        <li><%= bill.label :state%></li>
-        <li><%= bill.text_field :state%></li>
-        <li><%= bill.label :country%></li>
-        <li><%= bill.text_field :country%></li>
-        <li><%= bill.label :zip_code%></li>
-        <li><%= bill.text_field :zip_code%></li>
-    <%end%> 
-<h2>Enter Payment Info:</h2>     
-    <%= f.fields_for :payment_info do |pay| %>
-        <li><%= pay.label :name_on_card%></li>
-        <li><%= pay.text_field :name_on_card%></li>
-        <li><%= pay.label :card_number%></li>
-        <li><%= pay.number_field :card_number%></li>
-        <li><%= pay.label :expiration%></li>
-        <li><%= pay.datetime_field :expiration%></li>
-        <li><%= pay.label :cvc%></li>
-        <li><%= pay.number_field :cvc%></li>
-        <li><%= pay.label :zip_code%></li>
-        <li><%= pay.text_field :zip_code%></li>
-    <%end%>
-   <h3><%= f.submit%></h3>      
-<%end%>
-
-
+</div>

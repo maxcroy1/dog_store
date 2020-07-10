@@ -26,8 +26,13 @@
               <a class="nav-link text-dark" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark" href="/items">Items</a>
+              <a class="nav-link text-dark" href="/items">Products</a>
             </li>
+            <% if session[:user_id] %>
+              <li>
+                <%= link_to "Account", user_path(User.find(session[:user_id])), :class => "nav-link text-dark" %>
+              </li>
+            <% end %>
             <% if session[:user_id] %>
             <li class="nav-item">
               <a class="nav-link text-dark" href="/users/update">Logout</a>
