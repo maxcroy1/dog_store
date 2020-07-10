@@ -15,14 +15,28 @@
     </div>
     <hr>
      <div class="container m-4">
-        <h3><u>Shipping To:</u></h3>
-        <p>
-            <%=@order.shipping_info.address_one%>
-            <br>
-            <%=@order.shipping_info.address_two%>
-            <br>
-            <%=@order.shipping_info.state%>, <%=@order.shipping_info.country%>, <%=@order.shipping_info.zip_code%>
-        </p>
+        <div class="row">
+            <div class="col-6">
+                <h3><u>Shipping Address:</u></h3>
+                <p>
+                    <%=@order.shipping_info.address_one%>
+                    <br>
+                    <%=@order.shipping_info.address_two%>
+                    <br>
+                    <%=@order.shipping_info.state%>, <%=@order.shipping_info.country%>, <%=@order.shipping_info.zip_code%>
+                </p>
+            </div>
+            <div class="col-6">
+                <h3><u>Billing Address:</u></h3>
+                <p>
+                    <%=@order.billing_info.address_one%>
+                    <br>
+                    <%=@order.billing_info.address_two%>
+                    <br>
+                    <%=@order.billing_info.state%>, <%=@order.billing_info.country%>, <%=@order.billing_info.zip_code%>
+                </p>
+            </div>
+        </div>
     </div>
     <hr>
     <div class="container m-4">
