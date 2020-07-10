@@ -1,25 +1,50 @@
-<h1>All Items</h1>
-<h2>Toys</h2>
-<ul>
-    <%@items.select{|i| i.category == "Toy"}.each do |i|%>
-        <li><img class="category_image" src="https://loremflickr.com/640/480/dogtoy" alt="A dog toy"><%= link_to i.name, item_path(i) %></li>
-    <%end%>
-</ul>
-<h2>Food</h2>
-<ul>
-    <%@items.select{|i| i.category == "Food"}.each do |i|%>
-        <li><img class="category_image" src="https://loremflickr.com/640/480/dogtoy" alt="A dog toy"><%= link_to i.name, item_path(i) %></li>
-    <%end%>
-</ul>
-<h2>Care</h2>
-<ul>
-    <%@items.select{|i| i.category == "Care"}.each do |i|%>
-        <li><img class="category_image" src="https://loremflickr.com/640/480/dogtoy" alt="A dog toy"><%= link_to i.name, item_path(i) %></li>
-    <%end%>
-</ul>
-<h2>Accessories</h2>
-<ul>
-    <%@items.select{|i| i.category == "Accessories"}.each do |i|%>
-        <li><img class="category_image" src="https://loremflickr.com/640/480/dogtoy" alt="A dog toy"><%= link_to i.name, item_path(i) %></li>
-    <%end%>
-</ul>
+<div class="container">
+    <div class="container text-center mx-auto pt-5">
+        <h2><u>Toys</u></h2>
+        <div class="row">
+                <%@items.select{|i| i.category == "Toy"}.each do |i|%>
+                    <div class="col-sm-4 py-2 text-center mx-auto">
+                        <img class="category_image img-thumbnail rounded mx-auto d-block" src="https://loremflickr.com/200/200/dogtoy" alt="A dog toy">
+                        <br>
+                        <%= link_to i.name, item_path(i) %>
+                    </div>
+                <%end%>
+        </div>
+    </div>
+    <div class="container text-center mx-auto pt-5">
+        <h2><u>Food</u></h2>
+        <div class="row">
+                <%@items.select{|i| i.category == "Food"}.each do |i|%>
+                    <div class="col-sm-4 py-2 text-center mx-auto">
+                        <img class="category_image img-thumbnail rounded mx-auto d-block" src="https://loremflickr.com/200/200/dogtoy" alt="A dog toy">
+                        <br>
+                        <%= link_to i.name, item_path(i) %>
+                    </div>
+                <%end%>
+        </div>
+    </div>
+    <div class="container text-center mx-auto pt-5">
+        <h2><u>Care</u></h2>
+        <div class="row">
+                <%@items.select{|i| i.category == "Care"}.each do |i|%>
+                    <div class="col-sm-4 py-2 text-center mx-auto">
+                        <img class="category_image img-thumbnail rounded mx-auto d-block" src="https://loremflickr.com/200/200/dogtoy" alt="A dog toy">
+                        <br>
+                        <%= link_to i.name, item_path(i) %>
+                    </div>
+                <%end%>
+        </div>
+    </div>
+    <div class="container text-center mx-auto pt-5">
+        <h2><u>Accessories</u></h2>
+        <div class="row">
+                <%@items.select{|i| i.category == "Accessories"}.each do |i|%>
+                    <div class="col-sm-4 py-2 text-center mx-auto">
+                        <img class="category_image img-thumbnail rounded mx-auto d-block" src="https://loremflickr.com/200/200/dogtoy" alt="A dog toy">
+                        <br>
+                        <%= link_to i.name, item_path(i) %>
+                    </div>
+                <%end%>
+        </div>
+    </div>
+</div>

@@ -1,9 +1,11 @@
-<h1><%= @item.name %></h1>
-<img class="item_image" src="https://loremflickr.com/640/480/dogtoy" alt="A dog toy">
-<p><strong>Category:</strong> <%= @item.category %></p>
-<p><strong>Price:</strong> <%= @item.price %></p>
-<%= form_for @order_item, :url => { :controller => :items, :action => :add_to_cart } do |f| %>
-    <strong><%= f.label "Quantity: " %></strong>
-    <%= f.number_field :quantity %>
-    <%= f.submit "Add To Cart" %>
-<% end %>
+<div class="container mx-auto text-center py-5">
+    <h1><%= @item.name %></h1>
+    <img class="item_image py-3" src="https://loremflickr.com/400/400/dogtoy" alt="A dog toy">
+    <p><strong>Category:</strong> <%= @item.category %></p>
+    <p><strong>Price:</strong> $<%= @item.price %></p>
+    <%= form_for @order_item, :url => { :controller => :items, :action => :add_to_cart } do |f| %>
+        <strong><%= f.label "Quantity: " %></strong>
+        <%= f.number_field :quantity %>
+        <%= f.submit "Add To Cart" %>
+    <% end %>
+<div class="container">
