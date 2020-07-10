@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   post '/items/:id', to: 'items#add_to_cart'
 
   get '/login', to: "sessions#new"
-  
+  post '/login', to: "sessions#create"
+
   get '/logout', to: "sessions#destroy"
 
   get '/order_items/clear', to: 'order_items#clear_cart'

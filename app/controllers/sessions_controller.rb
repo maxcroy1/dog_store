@@ -6,13 +6,17 @@ class SessionsController < ApplicationController
 
     def create
         @user = User.find_by(username: params[:username]) 
-        if @user.authenticate(params[:password]) 
-            session[:user_id] = @user.id
-            redirect_to user_path(@user)
-        else 
-            flash[:my_errors] = @user.errors.full_messages
+        if @user
+            if @user.authenticate(params[:password]) 
+                session[:user_id] = @user.id
+                redirect_to user_path(@user)
+            else 
+                flash[:my_errors] = @user.errors.full_messages
+                redirect_to new_user_path
+            end    
+        else
             redirect_to new_user_path
-        end    
+        end
     end
 
     def destroy
