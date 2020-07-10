@@ -1,5 +1,12 @@
 <div class="container mx-auto my-5">
     <h3>Login</h3>
+    <div class='error'>
+      <% if flash[:my_errors] %>
+        <% flash[:my_errors].each do |error| %>
+          <p><%= error %></p>
+        <% end %>
+      <% end %>
+    </div>
     <%= form_tag('/login', :method => "post") do %>
       <div class="form-group"> 
         <label>Username</label>

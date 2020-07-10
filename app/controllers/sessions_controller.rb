@@ -11,10 +11,11 @@ class SessionsController < ApplicationController
                 session[:user_id] = @user.id
                 redirect_to user_path(@user)
             else 
-                flash[:my_errors] = @user.errors.full_messages
-                redirect_to new_user_path
+                flash[:my_errors] = ["Username / Password is incorrect"]
+                redirect_to '/login'
             end    
         else
+            flash[:my_errors] = ["Username does not exist"]
             redirect_to new_user_path
         end
     end
